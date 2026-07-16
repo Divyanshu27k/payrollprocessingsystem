@@ -3,11 +3,18 @@ import { Box, Typography, Paper, Grid, TextField, Button, Alert } from '@mui/mat
 
 const HRPortal = () => {
   const [success, setSuccess] = useState(false);
+  const [salarySuccess, setSalarySuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccess(true);
     setTimeout(() => setSuccess(false), 3000);
+  };
+
+  const handleSalarySubmit = (e) => {
+    e.preventDefault();
+    setSalarySuccess(true);
+    setTimeout(() => setSalarySuccess(false), 3000);
   };
 
   return (
@@ -22,6 +29,30 @@ const HRPortal = () => {
               <TextField fullWidth label="Policy Title" required sx={{ mb: 2 }} />
               <TextField fullWidth label="Policy Content" multiline rows={4} required sx={{ mb: 2 }} />
               <Button type="submit" variant="contained" color="warning">Publish Policy</Button>
+            </form>
+          </Paper>
+
+          <Paper sx={{ p: 3, borderRadius: 2, mt: 3 }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>Add Employee Salary</Typography>
+            {salarySuccess && <Alert severity="success" sx={{ mb: 2 }}>Salary details updated successfully!</Alert>}
+            <form onSubmit={handleSalarySubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Employee ID" required />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Effective Month" type="month" InputLabelProps={{ shrink: true }} required />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Base Salary (₹)" type="number" required />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Deductions (₹)" type="number" defaultValue={0} />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" variant="contained" color="primary">Save Salary</Button>
+                </Grid>
+              </Grid>
             </form>
           </Paper>
         </Box>
