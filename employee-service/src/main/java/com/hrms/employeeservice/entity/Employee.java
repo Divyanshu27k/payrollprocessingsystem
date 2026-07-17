@@ -23,6 +23,9 @@ public class Employee {
     @Column(name = "emp_code", unique = true, nullable = false)
     private String empCode;
 
+    @Column(name = "employ_image", columnDefinition = "LONGTEXT")
+    private String photoUrl;
+
     // Personal Information
     private String firstName;
     private String middleName;

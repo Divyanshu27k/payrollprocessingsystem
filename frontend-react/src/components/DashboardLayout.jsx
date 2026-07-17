@@ -49,6 +49,10 @@ const DashboardLayout = () => {
   const handleNotifClose = () => {
     setAnchorEl(null);
   };
+  const handleNotifItemClick = (path) => {
+    setAnchorEl(null);
+    navigate(path);
+  };
 
   const handleLogout = () => {
     navigate('/login');
@@ -158,16 +162,16 @@ const DashboardLayout = () => {
             >
               <Box sx={{ p: 2, pb: 1 }}><Typography variant="subtitle1" fontWeight="bold">Notifications</Typography></Box>
               <Divider />
-              <DropdownItem onClick={handleNotifClose}>
+              <DropdownItem onClick={() => handleNotifItemClick('/dashboard/employee-portal')}>
                 <Typography variant="body2">Leave request approved</Typography>
               </DropdownItem>
-              <DropdownItem onClick={handleNotifClose}>
+              <DropdownItem onClick={() => handleNotifItemClick('/dashboard/payroll')}>
                 <Typography variant="body2">Payslip for July generated</Typography>
               </DropdownItem>
-              <DropdownItem onClick={handleNotifClose}>
+              <DropdownItem onClick={() => handleNotifItemClick('/dashboard/employee-portal')}>
                 <Typography variant="body2">Reminder: Complete Appraisal</Typography>
               </DropdownItem>
-              <DropdownItem onClick={handleNotifClose}>
+              <DropdownItem onClick={() => handleNotifItemClick('/dashboard')}>
                 <Typography variant="body2">New company policy updated</Typography>
               </DropdownItem>
             </Menu>

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 @Data
 public class EmployeeDto {
     private String empCode;
+    private String photoUrl;
     
     // Personal Information
     private String firstName;

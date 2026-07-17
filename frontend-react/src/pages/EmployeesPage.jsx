@@ -58,7 +58,8 @@ const EmployeesPage = () => {
       shift: '',
       reportingManager: '',
       status: 'Active',
-      receivesCredentials: false
+      receivesCredentials: false,
+      photoUrl: ''
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
@@ -156,7 +157,16 @@ const EmployeesPage = () => {
             {employees.map((row) => (
               <TableRow key={row.empCode} sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { bgcolor: '#f1f5f9' } }}>
                 <TableCell component="th" scope="row" sx={{ fontWeight: 500 }}>{row.empCode}</TableCell>
-                <TableCell>{row.firstName} {row.lastName}</TableCell>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                    <Avatar src={row.photoUrl} sx={{ width: 32, height: 32, bgcolor: 'primary.main', fontSize: 14 }}>
+                      {row.firstName ? row.firstName.charAt(0) : ''}
+                    </Avatar>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                      {row.firstName} {row.lastName}
+                    </Typography>
+                  </Box>
+                </TableCell>
                 <TableCell>{row.department}</TableCell>
                 <TableCell>{row.designation}</TableCell>
                 <TableCell>{row.officialEmail}</TableCell>
@@ -202,6 +212,11 @@ const EmployeesPage = () => {
                     const file = e.target.files[0];
                     if (file) {
                       setPreviewImage(URL.createObjectURL(file));
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        formik.setFieldValue('photoUrl', reader.result);
+                      };
+                      reader.readAsDataURL(file);
                     }
                   }}
                 />
