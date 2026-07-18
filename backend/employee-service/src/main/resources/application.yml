@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:mysql://mysql:3306/hrms_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: root
+    password: Divy@nshu27k
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
